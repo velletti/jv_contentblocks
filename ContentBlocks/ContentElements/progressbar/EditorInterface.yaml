@@ -1,0 +1,21 @@
+name: jvelletti/progressbar
+group: common
+prefixFields: true
+fields:
+  -
+    identifier: header
+    label: Step
+    default: Step
+    useExistingField: true
+  - identifier: pi_flexform
+    useExistingField: true
+    type: FlexForm
+    fields:
+      - identifier: current
+        label: current step
+        default: 3
+        type: Number
+      - identifier: steps
+        label: Total steps
+        default: 5
+        type: Number

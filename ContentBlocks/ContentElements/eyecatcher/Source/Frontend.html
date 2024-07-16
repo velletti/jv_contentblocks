@@ -1,0 +1,37 @@
+<cb:asset.css identifier="content-block-css-jvelletti-eyecatcher" file="Frontend.css"/>
+
+<f:variable name="objID">#cobj-{data.uid -> f:format.raw()}</f:variable>
+<f:asset.script identifier="content-block-js-jvelletti-eyecatcher-{data.uid}">
+    let eyecatcherele="<f:format.raw>{objID}</f:format.raw>";
+    let eyecatchertop = <f:format.raw>{data.pi_flexform.top}</f:format.raw>;
+    eyecatchertop = parseInt(eyecatchertop) + "px" ;
+    let eyecatcherstart = <f:format.raw>{data.pi_flexform.start}</f:format.raw>;
+    eyecatcherstart = parseInt(eyecatcherstart)*1000  ;
+
+    <f:format.raw>
+        $(document).ready(function() {
+           setTimeout(function() {
+            $(eyecatcherele).css("top" ,eyecatchertop ).addClass("slide-in") ;
+        }, eyecatcherstart);
+        });
+    </f:format.raw>
+</f:asset.script>
+
+<div id="cobj-{data.uid}" class="jvelletti-eyecatcher alert alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+
+    <h2 class="jvelletti-eyecatcher-header">{data.header}</h2>
+
+    <f:if condition="{data.assets}">
+        <div class="jvelletti-eyecatcher-img">
+            <f:image image="{data.assets.0}" width="400" alt="{data.assets.0.alternative}" title="{data.assets.0.title}" treatIdAsReference="true"></f:image>
+        </div>
+    </f:if>
+
+
+    <p class="jvelletti-eyecatcher-p">
+        <f:format.html>{data.bodytext}</f:format.html>
+    </p>
+</div>

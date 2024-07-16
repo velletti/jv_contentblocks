@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file datatype="plaintext" original="Labels.xlf" source-language="en" date="2023-11-24T09:21:50+00:00" product-name="imageslider">
+		<header/>
+		<body>
+			<trans-unit id="jvelletti.imageslider.title" resname="jvelletti.imageslider.title">
+				<source>Content Block: imageslider</source>
+			</trans-unit>
+			<trans-unit id="jvelletti.imageslider.description" resname="jvelletti.imageslider.description">
+				<source>This is your content block description</source>
+			</trans-unit>
+			<trans-unit id="header.label" resname="title.label">
+				<source>name of the Slider (not visible) in Frontend</source>
+			</trans-unit>
+                <trans-unit id="pi_flexform.fade.label" resname="pi_flexform.fade.label">
+                <source>Fade</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.fade.description" resname="pi_flexform.fade.description">
+                <source>If not activated, images will slide in instead of fade</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.onerandom.label" resname="pi_flexform.onerandom.label">
+                <source>Only one raodom</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.onerandom.description" resname="pi_flexform.onerandom.description">
+                <source>If activated, Only ONE image is shown (will ignore Fade, slide direction or autoplay) </source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.autoplay.label" resname="pi_flexform.autoplay.label">
+                <source>Autoplay</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.autoplay.description" resname="pi_flexform.autoplay.description">
+                <source>on/off</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.speed.label" resname="pi_flexform.speed.label">
+                <source>Speed</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.speed.description" resname="pi_flexform.speed.description">
+                <source>1500 ms / 3000 ms or 5000 ms</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.dots.label" resname="pi_flexform.dots.label">
+                <source>Dots</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.dots.description" resname="pi_flexform.dots.description">
+                <source>Show navigation Dots below?</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.arrows.label" resname="pi_flexform.arrows.label">
+                <source>Arrows</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.arrows.description" resname="pi_flexform.arrows.description">
+                <source>Show navigation arrows?</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.vertical.label" resname="pi_flexform.vertical.label">
+                <source>vertical</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.vertical.description" resname="pi_flexform.vertical.description">
+                <source>Slide vertical?</source>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,129 @@
+{namespace vhs=FluidTYPO3\Vhs\ViewHelpers}
+<f:asset.css identifier="content-block-css-jvelletti-imageslider" href="EXT:jve_template/Resources/Public/Css/Plugins/slickslider.css"/>
+<cb:asset.css identifier="content-block-css-jvelletti-imageslider2" file="Frontend.css"/>
+
+<f:asset.script identifier="content-block-js-jvelletti-imageslider" src="EXT:jve_template/Resources/Public/Js/Plugins/slickslider.js"/>
+
+<f:variable name="objID">#cobj-{data.uid -> f:format.raw()}</f:variable>
+<f:asset.script identifier="content-block-js-jvelletti-imageslider-{data.uid}">
+    let objID = '<f:format.raw>{objID}</f:format.raw>'  ;
+    let fade = <f:if condition="{data.pi_flexform.fade}"><f:then>true</f:then><f:else>false</f:else></f:if> ;
+    let dots = <f:if condition="{data.pi_flexform.dots}"><f:then>true</f:then><f:else>false</f:else></f:if> ;
+    let arrows = <f:if condition="{data.pi_flexform.arrows}"><f:then>true</f:then><f:else>false</f:else></f:if> ;
+    let vertical = <f:if condition="{data.pi_flexform.vertical}"><f:then>true</f:then><f:else>false</f:else></f:if> ;
+    let autoplay = <f:if condition="{data.pi_flexform.autoplay}"><f:then>true</f:then><f:else>false</f:else></f:if> ;
+
+    let autoplaySpeed = '<f:format.raw>{data.pi_flexform.autoplayspeed}</f:format.raw>'  ;
+
+    $(document).ready(function(){
+
+    $(objID).slick({
+
+        fade: fade,
+        speed: 500,
+        autoplay: autoplay,
+        autoplaySpeed: autoplaySpeed,
+        dots: dots,
+        lazyLoad: 'progressive',
+        useTransform: true,
+        easing: 'ease-in-out',
+        arrows: arrows,
+        vertical: vertical,
+        responsive: [
+            {
+                breakpoint: 468
+            },
+            {
+                breakpoint: 750
+            },
+            {
+            breakpoint: 974
+            },
+            {
+            breakpoint: 1182
+            }
+
+        ]
+
+    });
+    $( objID ).on( 'init' , function(  slick ) {
+       // version too Old ?? does not fire ...
+    });
+
+    });
+</f:asset.script>
+
+
+<f:if condition="{data.frame_class} == 'default'">
+    <f:then>
+        <div class="container">
+    </f:then>
+    <f:else>
+
+    </f:else>
+</f:if>
+
+    <div class="row">
+        <f:variable name="randomImage" value="-1"/>
+        <f:if condition="{data.pi_flexform.onerandom}">
+
+            <f:variable name="sec4random" value="{f:format.date(date:'0 seconds', format:'s')}"/>
+            <f:variable name="count4random" value="{data.assets -> f:count()}"/>
+            <f:if condition="{count4random > 0}">
+                <f:variable name="randomImage" value="{sec4random % count4random}"/>
+            </f:if>
+
+
+        </f:if>
+        <div id="topContent" class="col-12 col-xs-12">
+        <div class="slickslider" id="cobj-{data.uid}">
+
+            <f:for each="{data.assets}" as="image" iteration="index">
+                <f:if condition="{index.index} == {randomImage} || {randomImage} < 0">
+                    <f:if condition="{randomImage} < 0">
+                        <f:then>
+                            <f:variable name="indexNo" value="{index.index}"/>
+
+                        </f:then>
+                        <f:else>
+                            <f:variable name="indexNo" value="0"/>
+
+                        </f:else>
+                    </f:if>
+                    <div class="slick-slide slick-slide-{indexNo}">
+                        <f:if condition="{image.link}">
+                            <f:then>
+                                <f:link.typolink parameter="{image.link}" title="{image.title}">
+                                    <vhs:media.picture src="fileadmin/{image.identifier}" alt="{image.alternative}" title="{image.title}">
+                                        <vhs:media.source media="(min-width: 1200px)" width="{image.width}c" height="{image.height}c" />
+                                        <vhs:media.source media="(min-width: 992px)" width="938" />
+                                        <vhs:media.source media="(min-width: 768px)" width="718" />
+                                        <vhs:media.source width="450" />
+                                    </vhs:media.picture>
+                                </f:link.typolink>
+                            </f:then>
+                            <f:else>
+                                <vhs:media.picture src="fileadmin/{image.identifier}" alt="{image.alternative}" title="{image.title}">
+                                    <vhs:media.source media="(min-width: 1200px)" width="{image.width}c" height="{image.height}c" />
+                                    <vhs:media.source media="(min-width: 992px)" width="938" />
+                                    <vhs:media.source media="(min-width: 768px)" width="718" />
+                                    <vhs:media.source width="450" />
+                                </vhs:media.picture>
+                            </f:else>
+                        </f:if>
+                    </div>
+                </f:if>
+
+            </f:for>
+
+        </div>
+        </div>
+    </div>
+<f:if condition="{data.frame_class} == 'default'">
+    <f:then>
+        </div>
+    </f:then>
+    <f:else>
+
+    </f:else>
+</f:if>

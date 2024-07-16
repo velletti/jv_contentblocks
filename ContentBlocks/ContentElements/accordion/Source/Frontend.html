@@ -1,0 +1,41 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<cb:asset.css identifier="cbAccordionCssFrontend" file="Frontend.css"/>
+<cb:asset.script identifier="cbAccordionJsFrontend" file="Frontend.js"/>
+
+<f:if condition="{data.frame_class} == 'default'">
+    <f:then>
+        <div class="container">
+    </f:then>
+    <f:else>
+
+    </f:else>
+</f:if>
+
+    <div class="cb-accordion  {f:if(condition: data.space_before_class, then: ' frame-space-before-{data.space_before_class}')}{f:if(condition: data.space_after_class, then: ' frame-space-after-{data.space_after_class}')}">
+        <f:for each="{data.accordion_item}" as="item">
+            <button class="accordion-item">
+                {item.text}
+            </button>
+            <div class="panel">
+                <p>
+                    <f:format.html>{item.textarea}</f:format.html>
+                </p>
+            </div>
+        </f:for>
+    </div>
+
+<f:if condition="{data.frame_class} == 'default'">
+    <f:then>
+        </div>
+    </f:then>
+    <f:else>
+
+    </f:else>
+</f:if>
+
+</html>

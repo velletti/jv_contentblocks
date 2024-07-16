@@ -1,0 +1,56 @@
+name: jvelletti/imageslider
+group: common
+
+prefixFields: true
+
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: frame_class
+    label: frame_class
+    useExistingField: true
+    items:
+      - label: full width
+        value: fullwidth
+      - label: in container
+        value: default
+  - identifier: settings
+    type: Palette
+    label: Settings
+    description: configure the slider
+    fields:
+      - identifier: pi_flexform
+        useExistingField: true
+        type: FlexForm
+        fields:
+          - identifier: onerandom
+            type: Checkbox
+          - identifier: fade
+            type: Checkbox
+          - identifier: autoplay
+            type: Checkbox
+            default: true
+          - identifier: vertical
+            type: Checkbox
+          - identifier: dots
+            type: Checkbox
+          - identifier: arrows
+            type: Checkbox
+            default: true
+          - identifier: autoplayspeed
+            type: Radio
+            default: 5000
+            items:
+              - label: ultraslow
+                value: 10000
+              - label: slow
+                value: 7000
+              - label: medium
+                value: 5000
+              - label: fast
+                value: 3000
+              - label: ultrafast
+                value: 1500
+      - identifier: assets
+        useExistingField: true
+        allowed: jpg,jpeg

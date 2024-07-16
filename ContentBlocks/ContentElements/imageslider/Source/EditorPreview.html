@@ -1,0 +1,12 @@
+<cb:asset.css identifier="content-block-jvelletti-imageslider-be" file="EditorPreview.css"/>
+
+<div class="cb-imageslider">
+    <f:if condition="{data.assets}">
+        Images: <f:count>{data.assets}</f:count><br>
+        <f:image image="{data.assets.0}" height="100"/><br><br>
+        <f:for each="{data.assets}" as="asset">
+            <f:image image="{asset}" height="30" style="margin-right: 10px;"/>
+        </f:for>
+    </f:if>
+
+</div>

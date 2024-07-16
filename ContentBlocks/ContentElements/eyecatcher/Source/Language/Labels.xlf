@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file datatype="plaintext" original="Labels.xlf" source-language="en" date="2023-12-17T10:23:56+00:00" product-name="eyecatcher">
+		<header/>
+		<body>
+			<trans-unit id="jvelletti.eyecatcher.title" resname="jvelletti.eyecatcher.title">
+				<source>Content Block: eyecatcher</source>
+			</trans-unit>
+			<trans-unit id="jvelletti.eyecatcher.description" resname="jvelletti.eyecatcher.description">
+				<source>This is your content block description</source>
+			</trans-unit>
+			<trans-unit id="header.label" resname="title.label">
+				<source>Custom header title</source>
+			</trans-unit>
+            <trans-unit id="pi_flexform.top.label" resname="pi_flexform.top.label">
+                <source>Pixel from top</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.top.description" resname="pi_flexform.top.description">
+                <source>enter a value between 20 and 400. <b>Recommended:</b> 200 px</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.start.label" resname="pi_flexform.start.label">
+                <source>Seconds to start</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.start.description" resname="pi_flexform.start.description">
+                <source>enter a value between 1 and 20, time when eye catcher will appear. <b>Recommended:</b> 6 sec.</source>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

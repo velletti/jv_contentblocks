@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file datatype="plaintext" original="Labels.xlf" source-language="en" date="2023-11-28T18:55:23+00:00" product-name="upcount">
+		<header/>
+		<body>
+			<trans-unit id="jvelletti.upcount.title" resname="jvelletti.upcount.title">
+				<source>Content Block: upcount</source>
+			</trans-unit>
+			<trans-unit id="jvelletti.upcount.description" resname="jvelletti.upcount.description">
+				<source>Shows a Number counting from 0 to given value</source>
+			</trans-unit>
+			<trans-unit id="header.label" resname="title.label">
+				<source>Titel</source>
+			</trans-unit>
+            <trans-unit id="pi_flexfrom.amountfrom.label" resname="pi_flexform.amountfrom.label">
+                <source>start at</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.amountfrom.description" resname="pi_flexform.amountfrom.description">
+                <source>enter the start number </source>
+            </trans-unit>
+             <trans-unit id="pi_flexfrom.amountto.label" resname="pi_flexform.amountto.label">
+                <source>amount to</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.amountto.description" resname="pi_flexform.amountto.description">
+                <source>enter the number to count to</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.isfirst.label" resname="pi_flexform.isfirst.label">
+                <source>First Counter</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.isfirst.description" resname="pi_flexform.isfirst.description">
+                <source>Needed for the first Counter on each page</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.islast.label" resname="pi_flexform.islast.label">
+                <source>Last Counter</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.islast.description" resname="pi_flexform.islast.description">
+                <source>Needed for at last Counter on each page</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.percent.label" resname="pi_flexform.percent.label">
+                <source>Percent</source>
+            </trans-unit>
+            <trans-unit id="pi_flexform.percent.description" resname="pi_flexform.percent.description">
+                <source>Show percent sign?</source>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

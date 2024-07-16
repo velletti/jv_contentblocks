@@ -1,0 +1,69 @@
+name: jvelletti/accordion
+group: common
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: frame_class
+    label: frame_class
+    useExistingField: true
+    items:
+      - label: full width
+        value: fullwidth
+      - label: in container
+        value: default
+  - identifier: space_before_class
+    renderType: selectSingle
+    type: Select
+    useExistingField: true
+    default: small
+    items:
+      - label: extra-large
+        value: extra-large
+      - label: large
+        value: large
+      - label: medium
+        value: medium
+      - label: small
+        value: small
+      - label: extra-small
+        value: extra-small
+  - identifier: space_after_class
+    renderType: selectSingle
+    type: Select
+    useExistingField: true
+    default: small
+    items:
+      - label: extra-large
+        value: extra-large
+      - label: large
+        value: large
+      - label: medium
+        value: medium
+      - label: small
+        value: small
+      - label: extra-small
+        value: extra-small
+  - identifier: accordion_item
+    type: Collection
+    labelField: text
+    minitems: 1
+    fields:
+      - identifier: text
+        type: Text
+      - identifier: textarea
+        type: Textarea
+        enableRichtext: true
+  - identifier: tx_bootstrapcore_first_element_in_row
+    type: Checkbox
+    useExistingField: true
+    default: ''
+    required: false
+    items:
+      - label: Erstes Element in der Reihe
+  - identifier: tx_bootstrapcore_last_element_in_row
+    type: Checkbox
+    useExistingField: true
+    default: ''
+    required: false
+    items:
+      - label: Letztes Element in der Reihe

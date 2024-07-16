@@ -1,0 +1,19 @@
+.jve_upcount-wrap {
+    text-align: center;
+    line-height: 1.1;
+    font-weight: bold;
+
+}
+jve_upcount-border {
+    border: #0a5486 1px solid;
+}
+
+.jve_upcount-wrap .jve_upcount_label {
+    font-size: 180% ;
+    font-weight: normal;
+}
+
+.jve_upcount-wrap .jve_upcount_sublabel {
+    font-size: 100% ;
+    font-weight: normal;
+}

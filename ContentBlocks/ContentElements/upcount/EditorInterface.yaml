@@ -1,0 +1,41 @@
+name: jvelletti/upcount
+group: common
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: header_link
+    useExistingField: true
+  - identifier: frame_class
+    useExistingField: true
+    label: Text Color
+    items:
+      - label: Primary (Call to action)
+        value: primary
+      - label: Info (blue)
+        value: info
+      - label: Secondary (gray)
+        value: secondary
+
+  - identifier: bodytext
+    rows: 3
+    cols: 40
+    useExistingField: true
+    enableRichtext: true
+    richtextConfiguration: jve_template
+
+  - identifier: pi_flexform
+    useExistingField: true
+    type: FlexForm
+    fields:
+    - identifier: amountfrom
+      type: Number
+    - identifier: amountto
+      type: Number
+    - identifier: isfirst
+      type: Checkbox
+    - identifier: islast
+      type: Checkbox
+    - identifier: percent
+      type: Checkbox
+

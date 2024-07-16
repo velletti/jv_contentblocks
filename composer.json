@@ -1,0 +1,32 @@
+{
+    "name": "jvelletti/jv-contentblocks",
+    "type": "typo3-cms-extension",
+    "version": "12.4.0",
+    "description": "Collection of TYPO3 Contentblocks ",
+
+    "keywords": [
+        "template",
+        "typo3"
+    ],
+    "authors": [
+        {
+            "name": "Joerg Velletti",
+            "role": "Developer",
+            "homepage": "http://www.velletti.de/"
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^12.4"
+    },
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "jvelletti\\JvContentBlocks\\": "Classes"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "jv_contentblocks"
+        }
+    }
+}

@@ -1,0 +1,51 @@
+
+<cb:asset.css identifier="content-block-css-jvelletti-upcount" file="Frontend.css"/>
+<f:if condition="{data.pi_flexform.isfirst}">
+    <f:then>
+        <cb:asset.script identifier="content-block-js-jvelletti-upcount" file="Frontend.js"/>
+        <div class="row mt-2 mb-4">
+            <f:render section="wrapContent" arguments="{_all}"/>
+    </f:then>
+    <f:else>
+        <f:render section="wrapContent" arguments="{_all}"/>
+    </f:else>
+</f:if>
+<f:if condition="{data.pi_flexform.islast}">
+    </div>
+    <div class="jve_upcount-wrap-last"><hr></div>
+</f:if>
+
+<f:section name="wrapContent">
+    <div class="jve_upcount-wrap col-12 col-md-4 {f:if(condition: data.pi_flexform.islast, then:'clearfix')}">
+        <div class="jve_upcount-border border-{data.frame_class} text-{data.frame_class}">
+            <f:if condition="{data.header_link}">
+                <f:then>
+                    <f:link.typolink parameter="{data.header_link}" target="_self"
+                                     class="text-{data.frame_class} link-{data.frame_class}">
+                        <div class="jve_upcount_label">{data.header}</div>
+                    </f:link.typolink>
+                </f:then>
+                <f:else>
+                    <div class="jve_upcount_label">{data.header}</div>
+                </f:else>
+            </f:if>
+            <div>
+                <f:if condition="{data.header_link}">
+                    <f:then>
+                        <f:link.typolink parameter="{data.header_link}" target="_self"
+                                         class="text-{data.frame_class} link-{data.frame_class}">
+
+                            <span class="jve_upcount" data-value="{data.pi_flexform.amountfrom}" data-target="{data.pi_flexform.amountto}" ></span>
+                            <f:if condition="{data.pi_flexform.percent}"><span class="jve_upcount-percent">%</span></f:if>
+                        </f:link.typolink>
+                    </f:then>
+                    <f:else>
+                        <span class="jve_upcount" data-value="{data.pi_flexform.amountfrom}" data-target="{data.pi_flexform.amountto}" ></span>
+                        <f:if condition="{data.pi_flexform.percent}"><span class="jve_upcount-percent">%</span></f:if>
+                    </f:else>
+                </f:if>
+            </div>
+            <div class="jve_upcount_sublabel"><f:format.nl2br>{data.bodytext}</f:format.nl2br></div>
+        </div>
+    </div>
+</f:section>

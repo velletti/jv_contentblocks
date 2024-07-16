@@ -1,0 +1,30 @@
+name: jvelletti/eyecatcher
+group: common
+prefixFields: true
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: bodytext
+    useExistingField: true
+    enableRichtext: true
+    richtextConfiguration: jve_template
+    rows: 8
+    cols: 40
+
+  - identifier: assets
+    minItems: 0
+    maxItems: 1
+    useExistingField: true
+    allowed: jpg,jpeg
+  - identifier: pi_flexform
+    label: settings
+    type: FlexForm
+    fields:
+      - identifier: top
+        label: pixelFromTop
+        type: Number
+        default: 80
+      - identifier: start
+        label: startAfterXSeconds
+        type: Number
+        default: 7

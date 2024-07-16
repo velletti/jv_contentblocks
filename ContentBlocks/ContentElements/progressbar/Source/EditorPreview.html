@@ -1,0 +1,12 @@
+<cb:asset.css identifier="content-block-jvelletti-progressbar-be" file="EditorPreview.css"/>
+
+<f:variable name="percent"><f:if condition="{data.pi_flexform.steps}">{100 * data.pi_flexform.current / data.pi_flexform.steps}</f:if></f:variable>
+jvelletti/progressbar: {data.pi_flexform.current} / {data.pi_flexform.steps}  {data.header} ( {percent} % )
+<br>
+<div class="w-100 clearfix">
+    <div class="progress bg-secondary">
+        <div class="progress-bar bg-success  p-2 text-white" role="progressbar" style="width: {percent}%;" aria-valuenow="{percent}" aria-valuemin="0" aria-valuemax="100">
+            <span class="m-1 bolder"> <span class="d-xs-none d-md-block-inline">{data.header} </span>{data.pi_flexform.current} / of {data.pi_flexform.steps}</span>
+        </div>
+    </div>
+</div>

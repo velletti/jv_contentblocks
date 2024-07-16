@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file datatype="plaintext" original="Labels.xlf" source-language="en" date="2023-12-09T15:34:02+00:00" product-name="progressbar">
+		<header/>
+		<body>
+			<trans-unit id="jvelletti.progressbar.title" resname="jvelletti.progressbar.title">
+				<source>Content Block: progressbar</source>
+			</trans-unit>
+			<trans-unit id="jvelletti.progressbar.description" resname="jvelletti.progressbar.description">
+				<source>This is your content block description</source>
+			</trans-unit>
+			<trans-unit id="header.label" resname="title.label">
+				<source>Custom header title</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
