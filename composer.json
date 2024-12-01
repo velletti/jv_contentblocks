@@ -1,7 +1,6 @@
 {
     "name": "jvelletti/jv-contentblocks",
     "type": "typo3-cms-extension",
-    "version": "12.4.0",
     "description": "Collection of TYPO3 Contentblocks ",
 
     "keywords": [
