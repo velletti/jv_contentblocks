@@ -3,5 +3,6 @@ services:
     autowire: true
     autoconfigure: true
     public: false
+
   Jvelletti\JvContentblocks\:
-    resource: '../Classes/*'
+    resource: '../Classes/ViewHelpers'

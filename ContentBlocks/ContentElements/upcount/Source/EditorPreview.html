@@ -2,7 +2,7 @@
 
 <p>
     <br><b>{data.header}</b><br>
-    {data.pi_flexform.amountfrom} - {data.pi_flexform.amountto} <f:if condition="{data.pi_flexform.percent}">%</f:if>
+    {data.pi_flexform.amountfrom} -  <f:if condition="{data.pi_flexform.tablecount}"><f:then> # of : {data.pi_flexform.tablecount}</f:then><f:else>{data.pi_flexform.amountto}</f:else></f:if><f:if condition="{data.pi_flexform.percent}">%</f:if>
     <br>{data.subheader} -> {data.header_link}
     <br>{data.frame_class}
     <br><f:if condition="{data.pi_flexform.isfirst}">First element</f:if>

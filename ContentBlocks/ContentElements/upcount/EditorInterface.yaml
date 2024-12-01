@@ -38,4 +38,5 @@ fields:
       type: Checkbox
     - identifier: percent
       type: Checkbox
-
+    - identifier: tablecount
+      type: Text

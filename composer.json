@@ -12,7 +12,7 @@
         {
             "name": "Joerg Velletti",
             "role": "Developer",
-            "homepage": "http://www.velletti.de/"
+            "homepage": "https://www.velletti.de/"
         }
     ],
     "require": {
@@ -21,7 +21,7 @@
     "license": "GPL-2.0-or-later",
     "autoload": {
         "psr-4": {
-            "jvelletti\\JvContentBlocks\\": "Classes"
+            "Jvelletti\\JvContentblocks\\": "Classes"
         }
     },
     "extra": {

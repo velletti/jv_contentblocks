@@ -1,3 +1,4 @@
+{namespace jvelletti=JVelletti\JvEvents\ViewHelpers}
 
 <cb:asset.css identifier="content-block-css-jvelletti-upcount" file="Frontend.css"/>
 <f:if condition="{data.pi_flexform.isfirst}">
@@ -16,18 +17,37 @@
 </f:if>
 
 <f:section name="wrapContent">
+    <f:if condition="{data.pi_flexform.tablecount}">
+        <f:then>
+            <f:switch expression="{data.pi_flexform.tablecount}">
+                <f:case value="tx_jvevents_domain_model_event">
+                    <f:variable name="count"><jvelletti:countRows table="{data.pi_flexform.tablecount}" where="{start_date: {condition: 'gt', value: 'time()', isTime: '1' }}" /></f:variable>
+                </f:case>
+                <f:defaultCase>
+                    <f:variable name="count"><jvelletti:countRows table="{data.pi_flexform.tablecount}" where="" /></f:variable>
+                </f:defaultCase>
+            </f:switch>
+
+        </f:then>
+        <f:else>
+            <f:variable name="count">{data.pi_flexform.amountto}</f:variable>
+        </f:else>
+    </f:if>
+
     <div class="jve_upcount-wrap col-12 col-md-4 {f:if(condition: data.pi_flexform.islast, then:'clearfix')}">
         <div class="jve_upcount-border border-{data.frame_class} text-{data.frame_class}">
-            <f:if condition="{data.header_link}">
-                <f:then>
-                    <f:link.typolink parameter="{data.header_link}" target="_self"
-                                     class="text-{data.frame_class} link-{data.frame_class}">
+            <f:if condition="{data.header}">
+                <f:if condition="{data.header_link}">
+                    <f:then>
+                        <f:link.typolink parameter="{data.header_link}" target="_self"
+                                         class="text-{data.frame_class} link-{data.frame_class}">
+                            <div class="jve_upcount_label">{data.header}</div>
+                        </f:link.typolink>
+                    </f:then>
+                    <f:else>
                         <div class="jve_upcount_label">{data.header}</div>
-                    </f:link.typolink>
-                </f:then>
-                <f:else>
-                    <div class="jve_upcount_label">{data.header}</div>
-                </f:else>
+                    </f:else>
+                </f:if>
             </f:if>
             <div>
                 <f:if condition="{data.header_link}">
@@ -35,17 +55,17 @@
                         <f:link.typolink parameter="{data.header_link}" target="_self"
                                          class="text-{data.frame_class} link-{data.frame_class}">
 
-                            <span class="jve_upcount" data-value="{data.pi_flexform.amountfrom}" data-target="{data.pi_flexform.amountto}" ></span>
+                            <span class="jve_upcount" data-value="{data.pi_flexform.amountfrom}" data-target="{count}" ></span>
                             <f:if condition="{data.pi_flexform.percent}"><span class="jve_upcount-percent">%</span></f:if>
                         </f:link.typolink>
                     </f:then>
                     <f:else>
-                        <span class="jve_upcount" data-value="{data.pi_flexform.amountfrom}" data-target="{data.pi_flexform.amountto}" ></span>
+                        <span class="jve_upcount" data-value="{data.pi_flexform.amountfrom}" data-target="{count}" ></span>
                         <f:if condition="{data.pi_flexform.percent}"><span class="jve_upcount-percent">%</span></f:if>
                     </f:else>
                 </f:if>
             </div>
-            <div class="jve_upcount_sublabel"><f:format.nl2br>{data.bodytext}</f:format.nl2br></div>
+            <div class="jve_upcount_sublabel"><f:format.html>{data.bodytext}</f:format.html></div>
         </div>
     </div>
 </f:section>
