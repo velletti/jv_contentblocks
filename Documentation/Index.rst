@@ -18,7 +18,7 @@ Add/remove Frontend User to Group
   frontend, backend
 
 :Version:
-  12.4.4
+  12.4.5
 
 :Language:
   de, en
@@ -30,6 +30,9 @@ Add/remove Frontend User to Group
     - Image slider
     - progressbar
     - upcount
+
+  Details on readme on github:
+  https://github.com/jvelletti/jv_contentblocks/blob/main/README.md
 
   Version: |version|
 

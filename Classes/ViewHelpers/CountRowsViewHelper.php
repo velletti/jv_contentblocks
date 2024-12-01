@@ -42,7 +42,7 @@ class CountRowsViewHelper extends AbstractViewHelper
 
         $where = ($this->arguments['where'] ?? '' );
 
-        $deleted = ($this->arguments['deleted'] ?? false);
+        $deleted = ($this->arguments['deleted'] ?? true);
         $groupby = ($this->arguments['groupby'] ?? false);
 
         try {
@@ -51,7 +51,7 @@ class CountRowsViewHelper extends AbstractViewHelper
             if (!$connection->getSchemaManager()->tablesExist([$table])) {
                 $this->getLogger()->error('No table Error in CountRowsViewHelper', [
                     'line' => __LINE__,
-                    'message' => 'Table "' . $table - '" does not exist',
+                    'message' => 'Table "' . $table . '" does not exist',
                     'code' => 404
                 ]);
                 return 0;
@@ -62,7 +62,11 @@ class CountRowsViewHelper extends AbstractViewHelper
             if( is_countable( $where) && count($where) > 0 && !empty($where) ) {
                 foreach ($where as $field => $condition) {
                     if (isset($condition['isTime']) && (int)$condition['isTime'] == 1 || $condition['value'] == 'time()') {
-                        $condition['value'] = time();
+                        if (isset($condition['diffDays'])) {
+                            $condition['value'] =  time() + ((int)$condition['diffDays'] * 24 * 60 * 60);
+                        } else {
+                            $condition['value'] = time();
+                        }
                     }
                     switch ($condition['condition']) {
                         case 'lt':
@@ -90,8 +94,7 @@ class CountRowsViewHelper extends AbstractViewHelper
             if ($groupby) {
                 $queryBuilder->groupBy($groupby);
             }
-
-            return (int)$queryBuilder->executeQuery()->fetchOne();
+           return (int)$queryBuilder->executeQuery()->fetchOne();
         } catch (\Exception $e) {
             $this->getLogger()->error('Error in CountRowsViewHelper', [
                 'line' => $e->getLine(),

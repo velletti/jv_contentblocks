@@ -18,6 +18,7 @@ fields:
     allowed: jpg,jpeg
   - identifier: pi_flexform
     label: settings
+    useExistingField: true
     type: FlexForm
     fields:
       - identifier: top

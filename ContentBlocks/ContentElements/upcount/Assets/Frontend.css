@@ -4,8 +4,12 @@
     font-weight: bold;
 
 }
-jve_upcount-border {
+.jve_upcount-border {
     border: #0a5486 1px solid;
+    width: 80%;
+    margin: 0 10% 20px;
+    box-shadow: #555 4px 6px 13px 1px;
+    padding-top: 10px;
 }
 
 .jve_upcount-wrap .jve_upcount_label {

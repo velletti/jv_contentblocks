@@ -1,4 +1,4 @@
-{namespace jvelletti=JVelletti\JvEvents\ViewHelpers}
+{namespace jve=JVelletti\JvContentblocks\ViewHelpers}
 
 <cb:asset.css identifier="content-block-css-jvelletti-upcount" file="Frontend.css"/>
 <f:if condition="{data.pi_flexform.isfirst}">
@@ -17,17 +17,22 @@
 </f:if>
 
 <f:section name="wrapContent">
-    <f:if condition="{data.pi_flexform.tablecount}">
+    <f:if condition="{data.pi_flexform.tablecount} != 'amountto'">
         <f:then>
-            <f:switch expression="{data.pi_flexform.tablecount}">
-                <f:case value="tx_jvevents_domain_model_event">
-                    <f:variable name="count"><jvelletti:countRows table="{data.pi_flexform.tablecount}" where="{start_date: {condition: 'gt', value: 'time()', isTime: '1' }}" /></f:variable>
+            <f:switch expression="{data.pi_flexform.filterrows}">
+                <f:case value="all">
+                    <f:variable name="count"><jve:countRows table="{data.pi_flexform.tablecount}" /></f:variable>
                 </f:case>
-                <f:defaultCase>
-                    <f:variable name="count"><jvelletti:countRows table="{data.pi_flexform.tablecount}" where="" /></f:variable>
-                </f:defaultCase>
+                <f:case value="created_last_12_months">
+                    <f:variable name="count"><jve:countRows table="{data.pi_flexform.tablecount}" where="{crdate: {condition: 'gt', value: 'time()', isTime: '1', diffDays: '-365'}}" /></f:variable>
+                </f:case>
+                <f:case value="start_date_in_future">
+                    <f:variable name="count"><jve:countRows table="{data.pi_flexform.tablecount}" where="{start_date: {condition: 'gt', value: 'time()', isTime: '1' }}" /></f:variable>
+                </f:case>
+                <f:case value="start_date_in_past">
+                    <f:variable name="count"><jve:countRows table="{data.pi_flexform.tablecount}" where="{start_date: {condition: 'lt', value: 'time()', isTime: '1' }}" /></f:variable>
+                </f:case>
             </f:switch>
-
         </f:then>
         <f:else>
             <f:variable name="count">{data.pi_flexform.amountto}</f:variable>
@@ -35,7 +40,7 @@
     </f:if>
 
     <div class="jve_upcount-wrap col-12 col-md-4 {f:if(condition: data.pi_flexform.islast, then:'clearfix')}">
-        <div class="jve_upcount-border border-{data.frame_class} text-{data.frame_class}">
+        <div class="jve_upcount-border same-height border-{data.frame_class} text-{data.frame_class}">
             <f:if condition="{data.header}">
                 <f:if condition="{data.header_link}">
                     <f:then>

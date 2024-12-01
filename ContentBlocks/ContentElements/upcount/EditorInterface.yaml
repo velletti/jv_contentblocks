@@ -16,6 +16,56 @@ fields:
         value: info
       - label: Secondary (gray)
         value: secondary
+      - label: Warning (yellow)
+        value: warning
+      - label: Danger (red)
+        value: danger
+  - identifier: pi_flexform
+    useExistingField: true
+    type: FlexForm
+    fields:
+      - identifier: amountfrom
+        type: Number
+      - identifier: amountto
+        type: Number
+      - identifier: percent
+        type: Checkbox
+      - identifier: tablecount
+        label: Table to get row count
+        type: Select
+        renderType: selectSingle
+        items:
+          - label: Use value of field amountto
+            value: amountto
+          - label: Frontend user
+            value: fe_users
+          - label: News
+            value: tx_news_domain_model_news
+          - label: Tango Organizer
+            value: tx_jvevents_domain_model_organizer
+          - label: Tango Events
+            value: tx_jvevents_domain_model_event
+          - label: Tango Locations
+            value: tx_jvevents_domain_model_location
+          - label: Seiten
+            value: pages
+      - identifier: filterrows
+        label: Rows Filter settings
+        type: Select
+        renderType: selectSingle
+        items:
+          - label: All
+            value: all
+          - label: Only Created last 12 months
+            value: created_last_12_months
+          - label: Only Start date in future
+            value: start_date_in_future
+          - label: Only Start date in past
+            value: start_date_in_past
+      - identifier: isfirst
+        type: Checkbox
+      - identifier: islast
+        type: Checkbox
 
   - identifier: bodytext
     rows: 3
@@ -23,20 +73,3 @@ fields:
     useExistingField: true
     enableRichtext: true
     richtextConfiguration: jve_template
-
-  - identifier: pi_flexform
-    useExistingField: true
-    type: FlexForm
-    fields:
-    - identifier: amountfrom
-      type: Number
-    - identifier: amountto
-      type: Number
-    - identifier: isfirst
-      type: Checkbox
-    - identifier: islast
-      type: Checkbox
-    - identifier: percent
-      type: Checkbox
-    - identifier: tablecount
-      type: Text
