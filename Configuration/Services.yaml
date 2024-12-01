@@ -4,5 +4,5 @@ services:
     autoconfigure: true
     public: false
 
-  Jvelletti\JvContentblocks\:
-    resource: '../Classes/ViewHelpers'
+  JVelletti\JvContentblocks\:
+    resource: '../Classes/*'

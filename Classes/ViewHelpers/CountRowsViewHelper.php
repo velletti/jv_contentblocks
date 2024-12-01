@@ -1,5 +1,5 @@
 <?php
-namespace Jvelletti\JvContentblocks\ViewHelpers;
+namespace JVelletti\JvContentblocks\ViewHelpers;
 
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

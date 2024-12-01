@@ -18,7 +18,7 @@ Add/remove Frontend User to Group
   frontend, backend
 
 :Version:
-  12.4.1
+  12.4.4
 
 :Language:
   de, en

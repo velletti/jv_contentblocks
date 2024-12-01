@@ -20,7 +20,7 @@
     "license": "GPL-2.0-or-later",
     "autoload": {
         "psr-4": {
-            "Jvelletti\\JvContentblocks\\": "Classes"
+            "JVelletti\\JvContentblocks\\": "Classes"
         }
     },
     "extra": {
