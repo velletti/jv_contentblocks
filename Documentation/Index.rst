@@ -18,7 +18,7 @@ Add/remove Frontend User to Group
   frontend, backend
 
 :Version:
-  12.4.5
+  12.4.8
 
 :Language:
   de, en
@@ -40,7 +40,7 @@ Add/remove Frontend User to Group
   tt_content, typo3, frontend, backend, contenblocks
 
 :Copyright:
-  2024
+  2024-
 
 :Author:
   Jörg Velletti

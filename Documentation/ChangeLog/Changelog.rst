@@ -11,6 +11,7 @@
 ChangeLog
 =========
 
+.. _12.4.8: Allow TYPo3 Version 13. untested
 .. _12.4.5: First working version
 .. _12.4.4: still unfinished  version
 .. _12.4.1: First published version
