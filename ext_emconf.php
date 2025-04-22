@@ -16,14 +16,14 @@ $EM_CONF['jv_contentblocks'] = array(
 	'category' => 'content',
 	'author' => 'Jörg Velletti',
 	'author_email' => 'typo3@velletti.de',
-	'state' => 'beta',
+	'state' => 'stable',
 	'internal' => '',
 	'createDirs' => '',
 	'clearCacheOnLoad' => 0,
 	'version' => '12.4.4',
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '12.4.0-12.9.99',
+			'typo3' => '12.4.0-13.9.99',
 		),
 		'conflicts' => array(
 		),
