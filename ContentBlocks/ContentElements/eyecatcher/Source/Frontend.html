@@ -8,7 +8,15 @@
     let eyecatcherstart = <f:format.raw>{data.pi_flexform.start}</f:format.raw>;
     eyecatcherstart = parseInt(eyecatcherstart)*1000  ;
     let eyecatchercookie = eyecatcherele.replace("#", "hide-") + "-eyecatcher";
-    let eyecatchercookietime = <f:format.raw>{data.pi_flexform.start}</f:format.raw> * 24 * 3600;
+    <f:if condition="{data.pi_flexform.hide} > 0">
+        <f:then>
+            let eyecatchercookietime = <f:format.raw>{data.pi_flexform.hide}</f:format.raw>;
+        </f:then>
+        <f:else>
+            let eyecatchercookietime = 0;
+        </f:else>
+    </f:if>
+
     <f:format.raw>
         if ($.cookie(eyecatchercookie) == "1") {
             $(eyecatcherele).remove();
@@ -17,7 +25,7 @@
                setTimeout(function() {
                 $(eyecatcherele).css("top" ,eyecatchertop ).addClass("slide-in") ;
                 $(eyecatcherele).first("button").on("click", function() {
-                    if ($.cookie('tx_cookies_accepted') == "1") {
+                    if ($.cookie('tx_cookies_accepted') == "1" && eyecatchercookietime > 0) {
                         $.cookie(eyecatchercookie, "1", { expires: eyecatchercookietime, path: '/' });
                     }
                     $(eyecatcherele).removeClass("slide-in").addClass("slide-out");
