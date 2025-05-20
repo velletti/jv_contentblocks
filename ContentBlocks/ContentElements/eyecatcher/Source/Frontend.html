@@ -7,20 +7,44 @@
     eyecatchertop = parseInt(eyecatchertop) + "px" ;
     let eyecatcherstart = <f:format.raw>{data.pi_flexform.start}</f:format.raw>;
     eyecatcherstart = parseInt(eyecatcherstart)*1000  ;
-
+    let eyecatchercookie = eyecatcherele.replace("#", "hide-") + "-eyecatcher";
+    let eyecatchercookietime = <f:format.raw>{data.pi_flexform.start}</f:format.raw> * 24 * 3600;
     <f:format.raw>
-        $(document).ready(function() {
-           setTimeout(function() {
-            $(eyecatcherele).css("top" ,eyecatchertop ).addClass("slide-in") ;
-        }, eyecatcherstart);
-        });
+        if ($.cookie(eyecatchercookie) == "1") {
+            $(eyecatcherele).remove();
+        } else {
+            $(document).ready(function() {
+               setTimeout(function() {
+                $(eyecatcherele).css("top" ,eyecatchertop ).addClass("slide-in") ;
+                $(eyecatcherele).first("button").on("click", function() {
+                    if ($.cookie('tx_cookies_accepted') == "1") {
+                        $.cookie(eyecatchercookie, "1", { expires: eyecatchercookietime, path: '/' });
+                    }
+                    $(eyecatcherele).removeClass("slide-in").addClass("slide-out");
+                    setTimeout(function() {
+                        $(eyecatcherele).remove();
+                    }, 1000);
+                });
+            }, eyecatcherstart);
+            });
+        }
     </f:format.raw>
 </f:asset.script>
 
 <div id="cobj-{data.uid}" class="jvelletti-eyecatcher alert alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
+    <f:if condition="{data.pi_flexform.start} > 0">
+        <f:then>
+            <button type="button" class="close setcookie" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </f:then>
+        <f:else>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </f:else>
+    </f:if>
+
 
     <h2 class="jvelletti-eyecatcher-header">{data.header}</h2>
 

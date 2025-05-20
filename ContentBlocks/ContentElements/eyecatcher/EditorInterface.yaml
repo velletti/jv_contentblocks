@@ -29,3 +29,7 @@ fields:
         label: startAfterXSeconds
         type: Number
         default: 7
+      - identifier: hide
+        label: HideForXDays
+        type: Number
+        default: 7
