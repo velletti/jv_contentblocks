@@ -1,8 +1,8 @@
 <cb:asset.css identifier="content-block-jvelletti-eyecatcher-be" file="EditorPreview.css"/>
 
-<div id="{objID}" class="jvelletti-eyecatcher">
+<div id="{objID}" class="jvelletti-eyecatcher slide-in">
     Header: {data.header}<br>
-    Text: <f:format.crop maxCharacters="40">{data.bodytext}</f:format.crop><br>
+    Text: <f:format.crop maxCharacters="120"><f:format.raw>{data.bodytext}</f:format.raw></f:format.crop><br>
     Pixel from top: {data.pi_flexform.top} px<br>
     Start after: {data.pi_flexform.start}  sec<br>
 </div>
