@@ -53,9 +53,9 @@
         </f:else>
     </f:if>
 
-
-    <h2 class="jvelletti-eyecatcher-header">{data.header}</h2>
-
+    <f:if condition="{data.header}">
+        <h2 class="jvelletti-eyecatcher-header">{data.header}</h2>
+    </f:if>
     <f:if condition="{data.assets}">
         <div class="jvelletti-eyecatcher-img">
             <f:if condition="{data.assets.0.link}">
@@ -71,8 +71,10 @@
         </div>
     </f:if>
 
+    <f:if condition="{data.bodytext -> f:format.trim()}">
+        <p class="jvelletti-eyecatcher-p">
+            <f:format.html>{data.bodytext -> f:format.trim()}</f:format.html>
+        </p>
+    </f:if>
 
-    <p class="jvelletti-eyecatcher-p">
-        <f:format.html>{data.bodytext}</f:format.html>
-    </p>
 </div>
