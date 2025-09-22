@@ -58,7 +58,16 @@
 
     <f:if condition="{data.assets}">
         <div class="jvelletti-eyecatcher-img">
-            <f:image image="{data.assets.0}" width="400" alt="{data.assets.0.alternative}" title="{data.assets.0.title}" treatIdAsReference="true"></f:image>
+            <f:if condition="{data.assets.0.link}">
+                <f:then>
+                    <f:link.typolink parameter="{data.assets.0.link}">
+                        <f:image image="{data.assets.0}" width="400" alt="{data.assets.0.alternative}" title="{data.assets.0.title}" treatIdAsReference="true"></f:image>
+                    </f:link.typolink>
+                </f:then>
+                <f:else>
+                    <f:image image="{data.assets.0}" width="400" alt="{data.assets.0.alternative}" title="{data.assets.0.title}" treatIdAsReference="true"></f:image>
+                </f:else>
+            </f:if>
         </div>
     </f:if>
 
