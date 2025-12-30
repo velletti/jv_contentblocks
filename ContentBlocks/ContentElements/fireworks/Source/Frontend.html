@@ -1,0 +1,13 @@
+{namespace jve=JVelletti\JvContentblocks\ViewHelpers}
+
+<cb:asset.css identifier="content-block-css-jvelletti-fireworks" file="Frontend.css"/>
+        <cb:asset.script identifier="content-block-js-jvelletti-fireworks" file="Frontend.js"/>
+
+<div class="jve_fireworks-videoContainer">
+    <canvas class="jve_fireworks-canvas"></canvas>
+    <div class="jve_fireworks-year">{data.header}</div>
+    <div class="jve_fireworks-greeting">
+       <f:format.html>{data.bodytext}</f:format.html>
+    </div>
+    <div class="jve_fireworks-flash"></div>
+</div>

@@ -1,0 +1,13 @@
+name: jvelletti/fireworks
+group: common
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+
+  - identifier: bodytext
+    rows: 3
+    cols: 40
+    useExistingField: true
+    enableRichtext: true
+    richtextConfiguration: jve_template

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file datatype="plaintext" original="Labels.xlf" source-language="en" date="2023-11-28T18:55:23+00:00" product-name="fireworks">
+		<header/>
+		<body>
+			<trans-unit id="jvelletti.fireworks.title" resname="jvelletti.fireworks.title">
+				<source>Content Block: fireworks</source>
+			</trans-unit>
+            <trans-unit id="jvelletti.fireworks.description" resname="description">
+                    <source>Show fireworks and some text on your website</source>
+                </trans-unit>
+			<trans-unit id="header.label" resname="title.label">
+				<source>Titel</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
