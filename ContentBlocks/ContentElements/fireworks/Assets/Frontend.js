@@ -1,10 +1,13 @@
 $(document).ready(function(){
+    const wrapper = document.querySelector('.jve_fireworks-videoContainer');
     const canvas = document.querySelector('.jve_fireworks-canvas');
     const ctx = canvas.getContext('2d');
     const flash = document.querySelector('.jve_fireworks-flash');
+    console.log('Fireworks script loaded');
+    console.log(wrapper.height, wrapper.width);
 
-    canvas.width = 480;
-    canvas.height = 854;
+    canvas.width = wrapper.clientWidth;
+    canvas.height = wrapper.clientHeight;
 
     class Particle {
         constructor(x, y, color) {
@@ -93,23 +96,13 @@ $(document).ready(function(){
             }, i * 50);
         }
 
-        // Versuche einen Ton zu spielen (funktioniert möglicherweise nicht ohne User-Interaktion)
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
-
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-
-        oscillator.frequency.value = 100;
-        oscillator.type = 'sawtooth';
-
-        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-
-        oscillator.start(audioContext.currentTime);
-        oscillator.stop(audioContext.currentTime + 0.5);
     }, 10000);
+    // Video-Container nach 15 Sekunden ausblenden
+    setTimeout(() => {
+        wrapper.style.transition = 'height 4s, opacity 3s';
+        wrapper.style.height = '0';
+        wrapper.style.opacity = '0';
+        }, 15000);
 });
 
 

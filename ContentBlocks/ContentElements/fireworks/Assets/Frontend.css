@@ -1,8 +1,8 @@
 .jve_fireworks-videoContainer {
     position: relative;
     width: 100%;
-    max-width: 480px;
-    aspect-ratio: 9/16;
+    max-height: 50vh;
+    height: 700px;
     background: linear-gradient(to bottom, #000428, #004e92);
     overflow: hidden;
 }
