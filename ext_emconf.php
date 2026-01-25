@@ -12,7 +12,7 @@
 
 $EM_CONF['jv_contentblocks'] = array(
 	'title' => 'JV_ Example Contentblocks',
-	'description' => 'Collection of TYPO3 Contentblocks. Untested as standalone.',
+	'description' => 'Collection of TYPO3 Contentblocks. As standalone.',
 	'category' => 'content',
 	'author' => 'Jörg Velletti',
 	'author_email' => 'typo3@velletti.de',
@@ -20,7 +20,7 @@ $EM_CONF['jv_contentblocks'] = array(
 	'internal' => '',
 	'createDirs' => '',
 	'clearCacheOnLoad' => 0,
-	'version' => '12.4.4',
+	'version' => '12.5.14',
 	'constraints' => array(
 		'depends' => array(
 			'typo3' => '12.4.0-13.9.99',
