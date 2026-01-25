@@ -1,0 +1,85 @@
+name: jvelletti/accordiongroup
+group: common
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: header_layout
+    useExistingField: true
+    default: 2
+
+  - identifier: frame_class
+    label: frame_class
+    useExistingField: true
+    items:
+      - label: full width
+        value: fullwidth
+      - label: in container
+        value: default
+  - identifier: space_before_class
+    renderType: selectSingle
+    type: Select
+    useExistingField: true
+    default: small
+    items:
+      - label: extra-large
+        value: extra-large
+      - label: large
+        value: large
+      - label: medium
+        value: medium
+      - label: small
+        value: small
+      - label: extra-small
+        value: extra-small
+  - identifier: space_after_class
+    renderType: selectSingle
+    type: Select
+    useExistingField: true
+    default: small
+    items:
+      - label: extra-large
+        value: extra-large
+      - label: large
+        value: large
+      - label: medium
+        value: medium
+      - label: small
+        value: small
+      - label: extra-small
+        value: extra-small
+  - identifier: accordions
+    type: Relation
+    allowed: 'tt_content'
+    maxitems: 10
+    suggestOptions:
+      default:
+        additionalSearchFields: 'header, id'
+
+  - identifier: pi_flexform
+    label: settings
+    useExistingField: true
+    type: FlexForm
+    fields:
+      - identifier: hasSubAccordeon
+        label: hasSubAccordeon
+        type: Checkbox
+        default: 1
+      - identifier: defaultRendering
+        label: defaultRendering
+        type: Checkbox
+        default: 0
+
+  - identifier: tx_bootstrapcore_first_element_in_row
+    type: Checkbox
+    useExistingField: true
+    default: ''
+    required: false
+    items:
+      - label: Erstes Element in der Reihe
+  - identifier: tx_bootstrapcore_last_element_in_row
+    type: Checkbox
+    useExistingField: true
+    default: ''
+    required: false
+    items:
+      - label: Letztes Element in der Reihe

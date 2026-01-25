@@ -1,0 +1,93 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<cb:asset.css identifier="cbAccordionCssFrontend" file="Frontend.css"/>
+<cb:asset.script identifier="cbAccordionJsFrontend" file="Frontend.js"/>
+
+<f:if condition="{data.frame_class} == 'default'">
+    <f:then>
+        <div class="container">
+    </f:then>
+    <f:else>
+
+    </f:else>
+</f:if>
+
+    <div class="cb-accordion  {f:if(condition: data.space_before_class, then: ' frame-space-before-{data.space_before_class}')}{f:if(condition: data.space_after_class, then: ' frame-space-after-{data.space_after_class}')}">
+        <f:render section="header" arguments="{_all}"></f:render>
+        <f:if condition="{data.pi_flexform.hasSubAccordeon}">
+            <f:then>
+                <f:for each="{data.accordions}" as="item">
+
+                    <button class="accordion-group">
+                        {item.header}
+                    </button>
+                    <div class="panel-group">
+                        <f:for each="{item._grids.accordions}" as="subitem">
+                            <button class="accordion-item">
+                                {subitem.data.header}
+                            </button>
+                            <div class="panel">
+                                <f:if condition="{subitem.data.pi_flexform.defaultRendering}">
+                                    <f:then>
+                                        <f:format.raw>{subitem.content}</f:format.raw>
+                                    </f:then>
+                                    <f:else>
+                                        <f:format.raw>{subitem.data.bodytext}</f:format.raw>
+                                    </f:else>
+                                </f:if>
+
+                            </div>
+                        </f:for>
+                    </div>
+                </f:for>
+            </f:then>
+            <f:else>
+                <button class="accordion-item">
+                    {item.data.header}
+                </button>
+                <div class="panel">
+                    <f:if condition="{item.data.pi_flexform.defaultRendering}">
+                        <f:then>
+                            <f:format.raw>{item.content}</f:format.raw>
+                        </f:then>
+                        <f:else>
+                            <f:format.raw>{item.data.bodytext}</f:format.raw>
+                        </f:else>
+                    </f:if>
+                </div>
+            </f:else>
+        </f:if>
+    </div>
+
+<f:if condition="{data.frame_class} == 'default'">
+    <f:then>
+        </div>
+    </f:then>
+    <f:else>
+
+    </f:else>
+</f:if>
+
+
+<f:section name="header">
+    <f:switch expression="{data.header_layout}">
+        <f:case value="1">
+            <h1 class="cb-accordion-header-{data.header_class}">{data.header}</h1>
+        </f:case>
+        <f:case value="2">
+            <h2 class="cb-accordion-header-{data.header_class}">{data.header}</h2>
+        </f:case>
+        <f:case value="3">
+            <h3 class="cb-accordion-header-{data.header_class}">{data.header}</h3>
+        </f:case>
+        <f:case value="4">
+            <h4 class="cb-accordion-header-{data.header_class}">{data.header}</h4>
+        </f:case>
+    </f:switch>
+
+</f:section>
+</html>
