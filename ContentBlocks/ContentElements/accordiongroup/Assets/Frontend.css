@@ -26,18 +26,16 @@
 .cb-accordion .accordion-item:after
 {
     content: '\002B';
-    color: rgb(0, 0, 85);
     font-weight: bold;
     font-size: 133%;
     float: right;
     margin-left: 5px;
-    line-height: 66%;
+    line-height: 90%;
 }
 
 .cb-accordion .active:after
 {
     content: "\2212";
-    color: #F0F0F0;
 }
 
 .cb-accordion .panel-group,

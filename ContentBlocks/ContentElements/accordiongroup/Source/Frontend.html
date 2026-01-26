@@ -33,10 +33,10 @@
                             <div class="panel">
                                 <f:if condition="{subitem.data.pi_flexform.defaultRendering}">
                                     <f:then>
-                                        <f:format.raw>{subitem.content}</f:format.raw>
+                                        <f:format.html>{subitem.content}</f:format.html>
                                     </f:then>
                                     <f:else>
-                                        <f:format.raw>{subitem.data.bodytext}</f:format.raw>
+                                        <f:format.html>{subitem.data.bodytext}</f:format.html>
                                     </f:else>
                                 </f:if>
 
@@ -47,17 +47,25 @@
             </f:then>
             <f:else>
                 <button class="accordion-item">
-                    {item.data.header}
+                    {data.header}
                 </button>
                 <div class="panel">
-                    <f:if condition="{item.data.pi_flexform.defaultRendering}">
-                        <f:then>
-                            <f:format.raw>{item.content}</f:format.raw>
-                        </f:then>
-                        <f:else>
-                            <f:format.raw>{item.data.bodytext}</f:format.raw>
-                        </f:else>
-                    </f:if>
+                    <f:for each="{data._grids.accordions}" as="subitem">
+                        <button class="accordion-item">
+                            {subitem.data.header}
+                        </button>
+                        <div class="panel">
+                            <f:if condition="{data.pi_flexform.defaultRendering}">
+                                <f:then>
+                                    <f:format.html>{subitem.content}</f:format.html>
+                                </f:then>
+                                <f:else>
+                                    <f:format.html>{subitem.data.bodytext}</f:format.html>
+                                </f:else>
+                            </f:if>
+
+                        </div>
+                    </f:for>
                 </div>
             </f:else>
         </f:if>

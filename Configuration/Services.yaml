@@ -6,3 +6,9 @@ services:
 
   JVelletti\JvContentblocks\:
     resource: '../Classes/*'
+
+  JVelletti\JvContentblocks\Command\MigrateMaritFaqCommand:
+    tags:
+      - name: 'console.command'
+        command: 'jvcontentblocks:migratemaritfaq'
+        description: 'Migrate tt_content rows from maritfaq_pi1 to jvelletti_accordeongroup content element.'
