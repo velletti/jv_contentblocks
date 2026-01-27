@@ -18,6 +18,19 @@
 			<trans-unit id="accordions.label" resname="accordion_item.label">
 				<source>Elements</source>
 			</trans-unit>
+            <trans-unit id="accordions.tabs.settings">
+                <source>Settings</source>
+            </trans-unit>
+             <trans-unit id="accordions.pi_flexform.label">
+                <source>FLexForm</source>
+            </trans-unit>
+
+            <trans-unit id="accordions.tabs.settings.label">
+                <source>Settings</source>
+            </trans-unit>
+             <trans-unit id="accordions.tabs.settings.description">
+                <source>Finetune the frontend layout. some settings may have no effect in your instance! </source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

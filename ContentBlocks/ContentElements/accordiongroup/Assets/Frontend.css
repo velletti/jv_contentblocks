@@ -1,29 +1,33 @@
 
-.cb-accordion .accordion-group ,
-.cb-accordion .accordion-item
+.jv-accordion .jv-accordion-group ,
+.jv-accordion .jv-accordion-item
 {
-    background-color: #E0F0FF;
-    color: #000055;
     cursor: pointer;
     padding: 0.4rem 1.5rem;
     width: 100%;
     text-align: left;
-    border: none;
     outline: none;
     transition: 0.4s;
-    border-bottom: 1px solid #eee;
+    border: none;
 }
 
-.cb-accordion .active,
-.cb-accordion .accordion-group:hover ,
-.cb-accordion .accordion-item:hover
+.jv-accordion .jv-accordion-group.default ,
+.jv-accordion .jv-accordion-item.default
 {
-    background-color: #000055;
+    background-color: #F5F5F5;
+    color: #777;
+}
+
+.jv-accordion .active.default,
+.jv-accordion .jv-accordion-group.default:hover ,
+.jv-accordion .jv-accordion-item.default:hover
+{
+    background-color: #b2b2b2;
     color: #F0F0F0;
 }
 
-.cb-accordion .accordion-group:after ,
-.cb-accordion .accordion-item:after
+.jv-accordion .jv-accordion-group:after ,
+.jv-accordion .jv-accordion-item:after
 {
     content: '\002B';
     font-weight: bold;
@@ -33,15 +37,15 @@
     line-height: 90%;
 }
 
-.cb-accordion .active:after
+.jv-accordion .active:after
 {
     content: "\2212";
 }
 
-.cb-accordion .panel-group,
-.cb-accordion .panel {
+.jv-accordion .jv-panel-group,
+.jv-accordion .jv-panel {
     padding: 0 1.25rem;
-    margin: 0.5rem 0 0.5rem 1rem;
+    margin: 0.5rem 0 1.5rem 1rem;
     background-color: white;
     overflow: hidden;
     max-height: 0;

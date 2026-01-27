@@ -7,46 +7,7 @@ fields:
     useExistingField: true
     default: 2
 
-  - identifier: frame_class
-    label: frame_class
-    useExistingField: true
-    items:
-      - label: full width
-        value: fullwidth
-      - label: in container
-        value: default
-  - identifier: space_before_class
-    renderType: selectSingle
-    type: Select
-    useExistingField: true
-    default: small
-    items:
-      - label: extra-large
-        value: extra-large
-      - label: large
-        value: large
-      - label: medium
-        value: medium
-      - label: small
-        value: small
-      - label: extra-small
-        value: extra-small
-  - identifier: space_after_class
-    renderType: selectSingle
-    type: Select
-    useExistingField: true
-    default: small
-    items:
-      - label: extra-large
-        value: extra-large
-      - label: large
-        value: large
-      - label: medium
-        value: medium
-      - label: small
-        value: small
-      - label: extra-small
-        value: extra-small
+
   - identifier: accordions
     type: Relation
     allowed: 'tt_content'
@@ -54,9 +15,9 @@ fields:
     suggestOptions:
       default:
         additionalSearchFields: 'header, id'
-
+  - identifier: settings
+    type: Tab
   - identifier: pi_flexform
-    label: settings
     useExistingField: true
     type: FlexForm
     fields:
@@ -68,18 +29,107 @@ fields:
         label: defaultRendering
         type: Checkbox
         default: 0
+      - identifier: colorClass
+        label: Color Class for Buttons
+        renderType: selectSingle
+        type: Select
+        default: default
+        items:
+          - label: default
+            value: default
+          - label: btn-default
+            value: btn-default
+          - label: btn-primary
+            value: btn-primary
+          - label: btn-secondary
+            value: btn-secondary
+          - label: custom
+            value: custom
+      - identifier: shadowClass
+        label: With Shadow
+        renderType: selectSingle
+        type: Select
+        default: shadow
+        items:
+          - label: no shadow
+            value: ''
+          - label: with Shadow
+            value: shadow
+      - identifier:  roundedClass
+        label: With Rounded Corners
+        renderType: selectSingle
+        type: Select
+        default: ''
+        items:
+          - label: none
+            value: ''
+          - label: with Rounded Corners
+            value: rounded
+      - identifier:  borderClass
+        label: Add CSS class Border to panels
+        renderType: selectSingle
+        type: Select
+        default: border
+        items:
+          - label: no border
+            value: ''
+          - label: with Border
+            value: border
 
-  - identifier: tx_bootstrapcore_first_element_in_row
-    type: Checkbox
+  - identifier: frame_class
+    label: frame_class
     useExistingField: true
-    default: ''
-    required: false
     items:
-      - label: Erstes Element in der Reihe
-  - identifier: tx_bootstrapcore_last_element_in_row
-    type: Checkbox
-    useExistingField: true
-    default: ''
-    required: false
-    items:
-      - label: Letztes Element in der Reihe
+      - label: full width
+        value: fullwidth
+      - label: in container
+        value: default
+  - identifier: jv_accordeon_palette
+    type: Palette
+    fields:
+      - identifier: space_before_class
+        renderType: selectSingle
+        type: Select
+        useExistingField: true
+        default: small
+        items:
+          - label: extra-large
+            value: extra-large
+          - label: large
+            value: large
+          - label: medium
+            value: medium
+          - label: small
+            value: small
+          - label: extra-small
+            value: extra-small
+      - identifier: space_after_class
+        renderType: selectSingle
+        type: Select
+        useExistingField: true
+        default: small
+        items:
+          - label: extra-large
+            value: extra-large
+          - label: large
+            value: large
+          - label: medium
+            value: medium
+          - label: small
+            value: small
+          - label: extra-small
+            value: extra-small
+      - identifier: tx_bootstrapcore_first_element_in_row
+        type: Checkbox
+        useExistingField: true
+        default: ''
+        required: false
+        items:
+          - label: Erstes Element in der Reihe
+      - identifier: tx_bootstrapcore_last_element_in_row
+        type: Checkbox
+        useExistingField: true
+        default: ''
+        required: false
+        items:
+          - label: Letztes Element in der Reihe

@@ -22,11 +22,28 @@ class MigrateMaritFaqCommand extends Command
                 'rows',
                 'r',
                 InputOption::VALUE_OPTIONAL,
-                "local path to a template folder, that should be updated, starting from project root. \n
-                --path=/vendor/your-vendor/your-extension/Configuration/TypoScript/\n
-                f.e.: --path=/vendor/jvelletti/jve-upgradewizard/Configuration/TypoScript/
-                \n"
-            ) ;
+                "number of rows to be processed (default 1) - use -1 to procede all or 1 to test \n"
+            )->addOption(
+                'shadowClass',
+                's',
+                InputOption::VALUE_OPTIONAL,
+                "add option shadow css class to content accordeon groups \n"
+            )->addOption(
+                'roundedClass',
+                'o',
+                InputOption::VALUE_OPTIONAL,
+                "add option rounded css class to content accordeon groups \n"
+            )->addOption(
+                'colorClass',
+                'c',
+                InputOption::VALUE_OPTIONAL,
+                "add name of css class to add buttons that defines the color scheme. default, btn-default, btn-primary, btn-secondary or custom\n"
+            )->addOption(
+                'borderClass',
+                'b',
+                InputOption::VALUE_OPTIONAL,
+                "add css class border to panels \n"
+            )  ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -39,6 +56,28 @@ class MigrateMaritFaqCommand extends Command
             $io->writeln('Max Rows to be updated was set to '. $maxRows );
         } else {
             $io->warning('Argument rows not given, using default of '. $maxRows );
+        }
+        $config = [
+            'shadowClass' => 'shadow',
+            'colorClass' => 'default',
+            'borderClass' => '',
+            'roundedClass' => 'rounded' ,
+        ];
+        if ( $input->getOption('shadowClass') ) {
+            $config['shadowClass'] = 'shadow' ;
+            $io->writeln('Adding shadow class to accordeon groups' );
+        }
+        if ( $input->getOption('colorClass') ) {
+            $config['colorClass'] = $input->getOption('colorClass') ;
+            $io->writeln('Using color class ' . $config['colorClass'] . ' for buttons' );
+        }
+        if ( $input->getOption('borderClass') ) {
+            $config['borderClass'] = 'border' ;
+            $io->writeln('Adding class ' . $config['borderClass'] . 'to panels' );
+        }
+        if ( $input->getOption('roundedClass') ) {
+            $config['roundedClass'] = 'rounded' ;
+            $io->writeln('Adding  class ' . $config['roundedClass'] . ' to accordeon groups' );
         }
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
@@ -70,7 +109,7 @@ class MigrateMaritFaqCommand extends Command
                 $io->writeln(str_repeat('-', 80));
                 $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
                 foreach ($rows as $row) {
-                    $row = $this->convertFF( $input , $output , $flexFormService , $row);
+                    $row = $this->convertFF( $input , $output , $flexFormService , $row , $config );
                     $io->writeln(sprintf(
                         '%-8s %-8s %-4s %s',
                         $row['uid'],
@@ -88,7 +127,8 @@ class MigrateMaritFaqCommand extends Command
 
         return Command::SUCCESS;
     }
-    private function convertFF( InputInterface $input , OutputInterface $output , FlexFormService $flexFormService , array $row) {
+    private function convertFF( InputInterface $input , OutputInterface $output , FlexFormService $flexFormService , array $row , array $config ) : array
+    {
         $ff = $flexFormService->convertFlexFormContentToArray($row['ff']);
 
         // Content-Array extrahieren
@@ -109,7 +149,7 @@ class MigrateMaritFaqCommand extends Command
             if ( count($elements) < 1  ) {
                 return $row;
             }
-            $newUid = $this->createTtcontent( $row , $row['pid'] , $content[0] , 0 );
+            $newUid = $this->createTtcontent( $row , $row['pid'] , $content[0] , 0  , $config);
             $row['converted_content'] = "New UID: " . $newUid ;
 
         } else {
@@ -140,22 +180,49 @@ class MigrateMaritFaqCommand extends Command
                         $pid = $row['pid'];
                     }
                 }
-                $newUids[] = $this->createTtcontent( $row , $pid , $subAccordeon , 0 );
+                $newUids[] = $this->createTtcontent( $row , $pid , $subAccordeon , 0  , $config);
             }
             if ( count($newUids) > 0 ) {
                 $row['converted_content'] = "New UIDs: " . implode( ", " , $newUids ) ;
                 $newUid = $this->createTtcontent( $row , $row['pid'] , [
                     'title' => $row['header'] . '',
                     'content_elements' => implode( "," , $newUids )
-                ] , 1 );
+                ] , 1  , $config);
             }
 
         }
 
+        if ( $newUids > 0 ) {
+            $this->updateRelationRecords( $row , $newUid , $output);
+        }
+
         return $row;
     }
+    private function updateRelationRecords( array $row , int $newUid , OutputInterface $output ): void
+    {
+        $qb = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tt_content');
+        $rows = $qb->select('uid','pid','records')
+            ->from('tt_content')
+            ->where(
+                $qb->expr()->eq('CType', $qb->createNamedParameter('shortcut' )),
+                $qb->expr()->inSet('records', $qb->createNamedParameter('tt_content_' .$row['uid'] )),
 
-    private function createTtcontent( array $row , $pid , $content_element , $hasSubAccordeons) : int {
+            )->executeQuery();
+        while ($updaterow = $rows->fetchAssociative()) {
+            $updataFieldRecords = str_replace( 'tt_content_' . $row['uid'] , 'tt_content_' . $newUid ,  $updaterow['records']) ;
+
+            $qb->update('tt_content')
+                ->set('records', $updataFieldRecords )
+                ->where(
+                    $qb->expr()->eq('uid', $qb->createNamedParameter($updaterow['uid'], \PDO::PARAM_INT))
+                )
+                ->executeStatement();
+            $output->writeln('Updated relation FROM ' . $updaterow['records'] . " => " . $updataFieldRecords . " In UID: ". $updaterow['uid'] . " on PID: " . $updaterow['pid'] );
+        }
+    }
+
+    private function createTtcontent( array $row , $pid , $content_element , $hasSubAccordeons , $config) : int {
         $qb = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tt_content');
          $qb->insert('tt_content')
@@ -167,7 +234,7 @@ class MigrateMaritFaqCommand extends Command
                 'space_after_class' => $row['space_after_class'],
                 'CType' => 'jvelletti_accordiongroup',
                 'header' => ($content_element['title'] ?? ''),
-                'pi_flexform' => $this->getTFFfield($hasSubAccordeons),
+                'pi_flexform' => $this->getTFFfield($hasSubAccordeons  , $config),
                 'jvelletti_accordiongroup_accordions' => ($content_element['content_elements'] ?? ''),
             ])
             ->executeStatement();
@@ -185,8 +252,9 @@ class MigrateMaritFaqCommand extends Command
         return (int)$newUid ;
     }
 
-    private function getTFFfield($hasSubAccordeons): string
+    private function getTFFfield($hasSubAccordeons  , $config): string
     {
+
         return '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <T3FlexForms>
     <data>
@@ -197,6 +265,18 @@ class MigrateMaritFaqCommand extends Command
                 </field>
                 <field index="defaultRendering">
                     <value index="vDEF">0</value>
+                </field>
+                <field index="shadowClass">
+                    <value index="vDEF">' . $config['shadowClass'] .'</value>
+                </field>
+                 <field index="borderClass">
+                    <value index="vDEF">' . $config['borderClass'] .'</value>
+                </field>
+                 <field index="colorClass">
+                    <value index="vDEF">' . $config['colorClass'] .'</value>
+                </field>
+                <field index="roundedClass">
+                    <value index="vDEF">' . $config['roundedClass'] .'</value>
                 </field>
             </language>
         </sheet>

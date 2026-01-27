@@ -4,8 +4,8 @@
     data-namespace-typo3-fluid="true"
 >
 
-<cb:asset.css identifier="cbAccordionCssFrontend" file="Frontend.css"/>
-<cb:asset.script identifier="cbAccordionJsFrontend" file="Frontend.js"/>
+<cb:asset.css identifier="jvAccordionCssFrontend" file="Frontend.css"/>
+<cb:asset.script identifier="jvAccordionJsFrontend" file="Frontend.js"/>
 
 <f:if condition="{data.frame_class} == 'default'">
     <f:then>
@@ -16,21 +16,45 @@
     </f:else>
 </f:if>
 
-    <div class="cb-accordion  {f:if(condition: data.space_before_class, then: ' frame-space-before-{data.space_before_class}')}{f:if(condition: data.space_after_class, then: ' frame-space-after-{data.space_after_class}')}">
+    <div class="jv-accordion  {f:if(condition: data.space_before_class, then: ' frame-space-before-{data.space_before_class}')}{f:if(condition: data.space_after_class, then: ' frame-space-after-{data.space_after_class}')}">
         <f:render section="header" arguments="{_all}"></f:render>
         <f:if condition="{data.pi_flexform.hasSubAccordeon}">
             <f:then>
                 <f:for each="{data.accordions}" as="item">
+                    <f:variable name="buttonId">{item.uid}</f:variable>
+                    <f:if condition="{item._raw.l18n_parent}">
+                        <f:then>
+                            <f:variable name="buttonId">{item._raw.l18n_parent}</f:variable>
+                        </f:then>
+                    </f:if>
 
-                    <button class="accordion-group">
+                    <button id="jvb-{buttonId}" class="jv-accordion-group {data.pi_flexform.colorClass} {data.pi_flexform.shadowClass} {data.pi_flexform.borderClass} {data.pi_flexform.roundedClass}">
                         {item.header}
                     </button>
-                    <div class="panel-group">
+                    <f:variable name="panelRoundedClass"></f:variable>
+                    <f:if condition="{data.pi_flexform.roundedClass}">
+                        <f:then>
+                            <f:variable name="panelRoundedClass">{data.pi_flexform.roundedClass}-bottom</f:variable>
+                        </f:then>
+                    </f:if>
+                    <div id="jvp-{item.uid}"  class="jv-panel-group jv-panel-has-sub   {data.pi_flexform.shadowClass} {data.pi_flexform.borderClass} {panelRoundedClass}">
                         <f:for each="{item._grids.accordions}" as="subitem">
-                            <button class="accordion-item">
+                            <f:variable name="buttonId">{subitem.data.uid}</f:variable>
+                            <f:if condition="{subitem.data._raw.l18n_parent}">
+                                <f:then>
+                                    <f:variable name="buttonId">{subitem.data._raw.l18n_parent}</f:variable>
+                                </f:then>
+                            </f:if>
+                            <button id="jvb-{buttonId}" class="jv-accordion-item {data.pi_flexform.colorClass} {data.pi_flexform.shadowClass} {data.pi_flexform.borderClass} {data.pi_flexform.roundedClass}">
                                 {subitem.data.header}
                             </button>
-                            <div class="panel">
+                            <f:variable name="panelRoundedClass"></f:variable>
+                            <f:if condition="{data.pi_flexform.roundedClass}">
+                                <f:then>
+                                    <f:variable name="panelRoundedClass">{data.pi_flexform.roundedClass}-bottom</f:variable>
+                                </f:then>
+                            </f:if>
+                            <div id="jvp-{subitem.data.uid}" class="jv-panel {data.pi_flexform.shadowClass} {data.pi_flexform.borderClass} {panelRoundedClass}">
                                 <f:if condition="{subitem.data.pi_flexform.defaultRendering}">
                                     <f:then>
                                         <f:format.html>{subitem.content}</f:format.html>
@@ -46,15 +70,28 @@
                 </f:for>
             </f:then>
             <f:else>
-                <button class="accordion-item">
+                <f:variable name="buttonId">{data.uid}</f:variable>
+                <f:if condition="{data._raw.l18n_parent}">
+                    <f:then>
+                        <f:variable name="buttonId">{data._raw.l18n_parent}</f:variable>
+                    </f:then>
+                </f:if>
+                <button id="jvb-{buttonId}" class="jv-accordion-item jv-panel-has-nosub {data.pi_flexform.colorClass} {data.pi_flexform.shadowClass} {data.pi_flexform.borderClass} {data.pi_flexform.roundedClass}">
                     {data.header}
                 </button>
-                <div class="panel">
+                <div id="jvp-{data.uid}" class="jv-panel {data.pi_flexform.shadowClass} {data.pi_flexform.borderClass} {data.pi_flexform.roundedClass}">
                     <f:for each="{data._grids.accordions}" as="subitem">
-                        <button class="accordion-item">
+                        <button id="jvb-{subitem.data.uid}" class="jv-accordion-item  {data.pi_flexform.colorClass} {data.pi_flexform.shadowClass} {data.pi_flexform.borderClass} {data.pi_flexform.roundedClass}">
                             {subitem.data.header}
                         </button>
-                        <div class="panel">
+                        <f:variable name="panelRoundedClass"></f:variable>
+                        <f:if condition="{data.pi_flexform.roundedClass}">
+                            <f:then>
+                                <f:variable name="panelRoundedClass">{data.pi_flexform.roundedClass}-bottom</f:variable>
+                            </f:then>
+                        </f:if>
+
+                        <div id="jvp-{subitem.data.uid}" class="jv-panel  {data.pi_flexform.shadowClass} {data.pi_flexform.borderClass} {panelRoundedClass}">
                             <f:if condition="{data.pi_flexform.defaultRendering}">
                                 <f:then>
                                     <f:format.html>{subitem.content}</f:format.html>

@@ -1,5 +1,5 @@
 
-.cb-accordion .accordion-item {
+.jv-accordion .jv-accordion-item {
     background-color: #E0F0FF;
     color: #000055;
     cursor: pointer;
@@ -12,12 +12,12 @@
     border-bottom: 1px solid #eee;
 }
 
-.cb-accordion .active, .cb-accordion .accordion-item:hover {
+.jv-accordion .active, .jv-accordion .jv-accordion-item:hover {
     background-color: #000055;
     color: #F0F0F0;
 }
 
-.cb-accordion .accordion-item:after {
+.jv-accordion .jv-accordion-item:after {
     content: '\002B';
     font-weight: bold;
     font-size: 133%;
@@ -26,12 +26,12 @@
     line-height: 90%;
 }
 
-.cb-accordion .active:after {
+.jv-accordion .active:after {
     content: "\2212";
 }
 
 
-.cb-accordion .panel {
+.jv-accordion .jv-panel {
     padding: 0 1.25rem;
     margin: 0.5rem 0 0.5rem 1rem;
     background-color: white;
