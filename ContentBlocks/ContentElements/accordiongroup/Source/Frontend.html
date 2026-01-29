@@ -80,9 +80,9 @@
                     {data.header}
                 </button>
                 <div id="jvp-{data.uid}" class="jv-panel {data.pi_flexform.shadowClass} {data.pi_flexform.borderClass} {data.pi_flexform.roundedClass}">
-                    <f:for each="{data._grids.accordions}" as="subitem">
-                        <button id="jvb-{subitem.data.uid}" class="jv-accordion-item  {data.pi_flexform.colorClass} {data.pi_flexform.shadowClass} {data.pi_flexform.borderClass} {data.pi_flexform.roundedClass}">
-                            {subitem.data.header}
+                    <f:for each="{data.accordions}" as="subitem">
+                        <button id="jvb-{subitem.uid}" class="jv-accordion-item  {data.pi_flexform.colorClass} {data.pi_flexform.shadowClass} {data.pi_flexform.borderClass} {data.pi_flexform.roundedClass}">
+                            {subitem.header}
                         </button>
                         <f:variable name="panelRoundedClass"></f:variable>
                         <f:if condition="{data.pi_flexform.roundedClass}">
@@ -91,13 +91,13 @@
                             </f:then>
                         </f:if>
 
-                        <div id="jvp-{subitem.data.uid}" class="jv-panel  {data.pi_flexform.shadowClass} {data.pi_flexform.borderClass} {panelRoundedClass}">
+                        <div id="jvp-{subitem.uid}" class="jv-panel  {data.pi_flexform.shadowClass} {data.pi_flexform.borderClass} {panelRoundedClass}">
                             <f:if condition="{data.pi_flexform.defaultRendering}">
                                 <f:then>
                                     <f:format.html>{subitem.content}</f:format.html>
                                 </f:then>
                                 <f:else>
-                                    <f:format.html>{subitem.data.bodytext}</f:format.html>
+                                    <f:format.html>{subitem.bodytext}</f:format.html>
                                 </f:else>
                             </f:if>
 
@@ -121,16 +121,16 @@
 <f:section name="header">
     <f:switch expression="{data.header_layout}">
         <f:case value="1">
-            <h1 class="cb-accordion-header-{data.header_class}">{data.header}</h1>
+            <h1 class="cb-accordion-header-{data.header_class}" data-uid="{data.uid}" data-has-elements="{data.p1_flexform.hasSubAccordeon}">{data.header}</h1>
         </f:case>
         <f:case value="2">
-            <h2 class="cb-accordion-header-{data.header_class}">{data.header}</h2>
+            <h2 class="cb-accordion-header-{data.header_class}" data-uid="{data.uid}"  data-has-elements="{data.p1_flexform.hasSubAccordeon}">{data.header}</h2>
         </f:case>
         <f:case value="3">
-            <h3 class="cb-accordion-header-{data.header_class}">{data.header}</h3>
+            <h3 class="cb-accordion-header-{data.header_class}" data-uid="{data.uid}" data-has-elements="{data.p1_flexform.hasSubAccordeon}">{data.header}</h3>
         </f:case>
         <f:case value="4">
-            <h4 class="cb-accordion-header-{data.header_class}">{data.header}</h4>
+            <h4 class="cb-accordion-header-{data.header_class}" data-uid="{data.uid}"  data-has-elements="{data.p1_flexform.hasSubAccordeon}">{data.header}</h4>
         </f:case>
     </f:switch>
 
