@@ -2,6 +2,7 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
     xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+    xmlns:jve="http://typo3.org/ns/JVelletti/JvContentblocks/ViewHelpers"
     data-namespace-typo3-fluid="true"
 >
 
@@ -10,10 +11,43 @@
 <div class="cb-accordion">
     <f:render section="header" arguments="{_all}"></f:render>
     {f:if(condition:'{data.pi_flexform.hasSubAccordeon}', then:'<b>Has Child Acorddeons</b>')}
-    <f:for each="{data.accordions}" as="item">
-        <be:link.editRecord uid="{item.uid}" table="{item.tableName}">
+
+
+    <f:for each="{jve:ttContentFromCsv(csv: data._raw.jvelletti_accordiongroup_accordions)}" as="item">
+        <be:link.editRecord uid="{item.uid}" table="tt_content">
+
             <div class="accordion-item">
-                {item.header}
+                <span class="mr2">
+                    <f:if condition="{item.hidden}">
+                        <f:then>
+                           <core:icon identifier="actions-toggle-off" size="small" />
+                        </f:then>
+                        <f:else>
+                            <core:icon identifier="actions-toggle-on" size="small" />
+                        </f:else>>
+                    </f:if>
+                </span>
+                [{item.uid}] {item.header}
+                <f:if condition="{item.starttime} > {f:format.date(date: 'now', format: 'U')}}">
+                    <f:then>
+                        <strong class="ml-2">Start: {f:format.date(date: '{item.starttime}', format: 'd.m.Y H:i')}</strong>
+                    </f:then>
+                </f:if>
+
+                <f:if condition="{item.endtime} < {f:format.date(date: 'now', format: 'U')} && {item.endtime} != 0">
+                    <f:then>
+                        <strong class="ml-2">End: {f:format.date(date: '{item.endtime}', format: 'd.m.Y H:i')}</strong>
+                    </f:then>
+                </f:if>
+
+                <f:if condition="{item.fe_group}">
+                    <f:then>
+                        <span class="ml-2"><core:icon identifier="status-user-group-frontend" size="small" title="Access restricted"/></span>
+                    </f:then>
+                </f:if>
+
+
+
             </div>
         </be:link.editRecord>
     </f:for>
