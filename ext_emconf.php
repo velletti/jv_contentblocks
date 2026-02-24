@@ -10,10 +10,10 @@ $EM_CONF['jv_contentblocks'] = array(
 	'internal' => '',
 	'createDirs' => '',
 	'clearCacheOnLoad' => 0,
-	'version' => '13.4.2',
+	'version' => '13.4.5',
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '13.4.0-13.9.99',
+			'typo3' => '13.4.0-13.4.99',
 		),
 		'conflicts' => array(
 		),
