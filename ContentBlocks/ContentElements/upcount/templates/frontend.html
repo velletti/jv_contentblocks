@@ -1,9 +1,11 @@
 {namespace jve=JVelletti\JvContentblocks\ViewHelpers}
 
-<cb:asset.css identifier="content-block-css-jvelletti-upcount" file="Frontend.css"/>
+<f:asset.css identifier="content-block-css-jvelletti-upcount" href="{cb:assetPath()}/Frontend.css" />
+<f:asset.script identifier="content-block-js-jvelletti-upcount" src="{cb:assetPath()}/Frontend.js" />
+
 <f:if condition="{data.pi_flexform.isfirst}">
     <f:then>
-        <cb:asset.script identifier="content-block-js-jvelletti-upcount" file="Frontend.js"/>
+
         <div class="row w-100 mt-2 mb-4">
             <f:render section="wrapContent" arguments="{_all}"/>
     </f:then>

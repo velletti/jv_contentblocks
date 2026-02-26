@@ -1,7 +1,8 @@
 {namespace jve=JVelletti\JvContentblocks\ViewHelpers}
+{namespace cb=TYPO3\CMS\ContentBlocks\ViewHelpers}
 
-<cb:asset.css identifier="content-block-css-jvelletti-fireworks" file="Frontend.css"/>
-        <cb:asset.script identifier="content-block-js-jvelletti-fireworks" file="Frontend.js"/>
+<f:asset.css identifier="content-block-css-jvelletti-fireworks" href="{cb:assetPath()}/Frontend.css" />
+<f:asset.script identifier="content-block-js-jvelletti-fireworks" src="{cb:assetPath()}/Frontend.js" />
 
 <div class="jve_fireworks-videoContainer">
     <canvas class="jve_fireworks-canvas"></canvas>
