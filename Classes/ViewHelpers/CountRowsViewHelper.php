@@ -17,7 +17,7 @@ class CountRowsViewHelper extends AbstractViewHelper
      */
     protected $logger;
 
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('table', 'string', 'The table name', true);
         $this->registerArgument('where', 'array', 'The where conditions', false, []);
