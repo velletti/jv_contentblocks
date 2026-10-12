@@ -48,15 +48,6 @@ class CountRowsViewHelper extends AbstractViewHelper
         try {
             $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable($table);
 
-            if (!$connection->getSchemaManager()->tablesExist([$table])) {
-                $this->getLogger()->error('No table Error in CountRowsViewHelper', [
-                    'line' => __LINE__,
-                    'message' => 'Table "' . $table . '" does not exist',
-                    'code' => 404
-                ]);
-                return 0;
-            }
-
             $queryBuilder = $connection->createQueryBuilder();
             $queryBuilder->count('*')->from($table);
             if( is_countable( $where) && count($where) > 0 && !empty($where) ) {
