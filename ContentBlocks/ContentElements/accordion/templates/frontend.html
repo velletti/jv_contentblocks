@@ -4,38 +4,50 @@
     data-namespace-typo3-fluid="true"
 >
 
-<f:asset.css identifier="jvAccordionCssFrontend" href="{cb:assetPath()}/Frontend.css" />
-<f:asset.script identifier="jvAccordionJsFrontend" defer="true" src="{cb:assetPath()}/Frontend.js" />
+    <f:asset.css identifier="jvAccordionCssFrontend" href="{cb:assetPath()}/Frontend.css" />
+    <f:asset.script identifier="jvAccordionJsFrontend" defer="true" src="{cb:assetPath()}/Frontend.js" />
 
-<f:if condition="{data.frame_class} == 'default'">
-    <f:then>
-        <div class="container">
-    </f:then>
-    <f:else>
-
-    </f:else>
+    <f:if condition="{data.frame_class} == 'default'">
+        <f:then>
+            <div class="container">
+                <f:render section="content" arguments="{_all}" />
+            </div>
+        </f:then>
+        <f:else>
+            <f:render section="content" arguments="{_all}" />
+        </f:else>
 </f:if>
+</html>
 
-    <div class="jv-accordion  {f:if(condition: data.space_before_class, then: ' frame-space-before-{data.space_before_class}')}{f:if(condition: data.space_after_class, then: ' frame-space-after-{data.space_after_class}')}">
+<f:section name="content">
+    <f:variable name="flex" value="{data.pi_flexform}" />
+
+    <f:variable name="panelRoundedClass"></f:variable>
+    <f:if condition="{flex.roundedClass}">
+        <f:variable name="panelRoundedClass">{flex.roundedClass}-bottom</f:variable>
+    </f:if>
+    <f:variable name="spaceBefore"></f:variable>
+    <f:if condition="{data.space_before_class}">
+        <f:variable name="spaceBefore">frame-space-before-{data.space_before_class}</f:variable>
+    </f:if>
+
+    <f:variable name="spaceAfter"></f:variable>
+    <f:if condition="{data.space_after_class}">
+        <f:variable name="spaceAfter">frame-space-after-{data.space_after_class}</f:variable>
+    </f:if>
+
+    <div class="jv-accordion {spaceBefore} {spaceAfter}">
         <f:for each="{data.accordion_item}" as="item">
-            <button class="jv-accordion-item">
+            <button class="jv-accordion-item {flex.colorClass} {flex.shadowClass} {flex.borderClass} {flex.roundedClass}">
                 {item.text}
             </button>
-            <div class="jv-panel">
-                <p>
-                    <f:format.html>{item.textarea}</f:format.html>
-                </p>
+            <div class="jv-panel {flex.shadowClass} {flex.borderClass} {panelRoundedClass} ">
+                <f:format.html>{item.textarea}</f:format.html>
             </div>
+            <div class="jv-accordion-padding"></div>
+
         </f:for>
     </div>
+</f:section>
 
-<f:if condition="{data.frame_class} == 'default'">
-    <f:then>
-        </div>
-    </f:then>
-    <f:else>
 
-    </f:else>
-</f:if>
-
-</html>

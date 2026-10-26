@@ -1,0 +1,50 @@
+identifier: jvelletti/AccordeonStyle
+title: 'Accordeon styling'
+prefixFields: false
+fields:
+  - identifier: colorClass
+    label: Color Class for Buttons
+    renderType: selectSingle
+    type: Select
+    default: default
+    items:
+      - label: default
+        value: default
+      - label: btn-default
+        value: btn-default
+      - label: btn-primary
+        value: btn-primary
+      - label: btn-secondary
+        value: btn-secondary
+      - label: custom
+        value: custom
+  - identifier: shadowClass
+    label: With Shadow
+    renderType: selectSingle
+    type: Select
+    default: shadow
+    items:
+      - label: no shadow
+        value: ''
+      - label: with Shadow
+        value: shadow
+  - identifier: roundedClass
+    label: With Rounded Corners
+    renderType: selectSingle
+    type: Select
+    default: ''
+    items:
+      - label: none
+        value: ''
+      - label: with Rounded Corners
+        value: rounded
+  - identifier: borderClass
+    label: Add CSS class Border to panels
+    renderType: selectSingle
+    type: Select
+    default: border
+    items:
+      - label: no border
+        value: ''
+      - label: with Border
+        value: border
